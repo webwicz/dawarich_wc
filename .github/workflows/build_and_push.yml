@@ -156,7 +156,7 @@ jobs:
       - name: Build Docker tags
         id: docker_tags
         run: |
-          IMAGE="${{ secrets.DOCKERHUB_USERNAME }}/dawarich"
+          IMAGE="webwicz/wiczhub"
           VERSION="${{ needs.prepare.outputs.version }}"
           IS_PRERELEASE="${{ needs.prepare.outputs.is_prerelease }}"
 
@@ -181,7 +181,7 @@ jobs:
             TAG_ARGS="${TAG_ARGS} -t ${TAG}"
           done
 
-          SOURCES=$(printf "${{ secrets.DOCKERHUB_USERNAME }}/dawarich@sha256:%s " *)
+          SOURCES=$(printf "webwicz/wiczhub@sha256:%s " *)
 
           docker buildx imagetools create ${TAG_ARGS} ${SOURCES}
 
